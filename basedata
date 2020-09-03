@@ -1,0 +1,1252 @@
+База данных - набор взаимосвязанных аргументов
+
+Система управления базами данных (СУБД) - комплекс программных средств для
+управления данными
+
+СУБД отвечает за:
+- Поддержку языка БД
+- Механизмы хранения и извлечения данных
+- Оптимизацию процессов извлечения данных и т.д.
+
+---ТИПЫ СУБД---
+
+- Файл - серверные: Microsoft Access
+-Клиент-серверные:  MySQL, PostgreSQL
+-Встраиваемые: SQLite
+
+Основные клиент-серверные СУБД
+
+-MySQL
+-PostgreSQL
+-Oracle
+-MS SQL
+-MariaDB
+
+Все они - реляционные
+
+и все они поддерживают язык SQL (язык структурированных запросов)
+
+
+НЕ реляционные СУБД существовали задолго до реляционных (иерархические)
+
+На смену пришли реляционные(начиная с 1970-х)
+
+И спустя несколько декад, не реляционные СУБД возродились ( рассвет в 2010-х)
+
+появилось NOSQL движение
+
+MongoDB - одна из наиболее популярных NoSQL-СУБД
+
+Реляционные СУБД не хуже и не лучше не реляционных СУБД
+
+У всех видов есть свои преимущества и недостатки
+
+---------------------------------------------------------
+
+Реляционные СУБД
+- Теоретической основой служит реляционная алгебра
+- Реляционная алгебра определяет систему операций над отношениями или таблицами:
+ - объединение
+ - пересечение
+ - вычитание
+ - соединение и т.д.
+-Все эти операции выражаются через SQL
+
+
+Сущность - например, клиенты, заказы, поставщики
+
+Таблица - отношение
+
+Столбец - атрибут
+
+Строка/Запись - кортеж
+
+Результирующий набор - результат запроса SQL:
+
+SELECT contact_name, address, city
+FROM customers
+LIMIT 13
+
+Пример ^
+
+
+SQL _ Structured Query Language
+
+SQl - непроцедурный язык и не язык общего назначения
+
+Если необходимо реализовать процедурную логику - нужен другой язык, такой как
+Python, C#, Java
+
+Результатом SQL запроса является результирующий набор (как правило - таблица)
+
+DDL (Data Definition Lenguage) - CREATE, ALTER, DROP - Создать базу данных, менять
+таблицы, удалять таблицы, удалять базу данных
+
+DML(Data Manipulation Language) - SELECT, INSERT, UPDATE, DELETE - Вставлять данные в
+таблицу, выборка данных, обновлять данные в таблице, удалять данные в таблице
+
+TCL(Transaction Control Language) = COMMIT, ROLLBACK, SAVEPOINT - Рассматривать целый
+набор команд как единое целое, если на каком- то этапе случилась ошибка, это нам
+позволяет откатить все. Без потери информации. Это механизм, который обеспечивает
+целостность данных. Механизм, которые не дает частично обновить данные, потому что это
+нарушает целостность данных.
+
+DCL(Data Control Language) - GRANT, REVOKE, DENY - управление правами доступа
+
+ANCI SQL-92 - стандарты SQL
+
+Различия в процедурные расширениях:
+PL/pgSQL в PostreSQL, PL/SQL в Oracle, T-SQL в MS SQL
+
+-------------------------------------------------------------
+
+PostgreSQL
+
+open sourse - free
+
+лучший выбор для изучения: проинсталлировал и "понеслась"!
+
+"Взрослая" СУБД, хорошо поддерживающая транзакционность из коробки
+
+Весьма развитый диалект SQL
+
+В сравнении с MySQL есть свои плюсы и минусы
+
+В любом случае, 90% возможностей диалекта SQL поддерживаемого  PostgreSQL
+можно без изменений использовать и в др.СУБД
+
+------------------------------------------------------
+
+Типы данных основные
+
+-- Целые числа --
+
+-smallint = 2**16 (-32.768 to 32767)
+
+- integer = 2**32 (-2.147.483.648 to 2.147.483.647
+
+- bigint = 2**64
+
+-- Вещественные числа --
+Числа с плавающей точкой
+
+decimal/numeric  = Гигантский range значений - Обычно значения, связанные с количеством
+денег - объявляются именно этим типом
+
+real/float4 = до 6 знаков после запятой - для дробных чисел, значения, не связанные с
+деньгами, зачастую используются в научных вычислениях
+
+double precision/ float8 / float = 15 знаков после запятой - для дробных чисел, значения,
+не связанные с деньгами, зачастую используются в научных вычислениях
+
+-- integral numbers --
+
+smallserial = 1 to 32.767
+
+serial = 1 to 2.147.483.647
+
+bigserial = 1 to 2**64
+
+--Символы--
+
+char = Строка фиксированной длины, добивает пробелами
+
+varchar = Если задали 10, то есть хотим поддерживать строки длинной до 10, если кто-то
+передаст 5 символов вместо 10, то она не будет расширяться
+
+text = Строки любой длины
+
+-- Логический тип --
+
+Boolean / bool = True / False
+
+-- Представление даты и времени --
+
+date = Даты
+
+time = Время
+
+timestamp = И дата и Время
+
+interval = Разница между двумя timestamp-ами
+
+timestamptz = tz(timezon) хранит Дату , время и часовые пояса
+
+
+-- Другие типы данных --
+
+Arrays
+
+JSON
+
+XML
+
+Геометрические типы и др.спец.типы
+
+Custom - типы
+
+NULL - Отсутствие данных
+
+---------------------------------------
+
+template  - шаблон, на основе которого создается база данных, по умолчанию template1
+
+connection limit - Ограничение на количество подключений к базе данных
+
+-- Security --
+
+Можно управлять пользователями и давать им привилегии
+
+-- SQL --
+
+На каком языке, какие команды будут использоваться
+
+
+Schemas - public
+    Схемы предназначены для того, чтобы разграничивать пользователей к определенным
+    таблицам
+
+Нельзя удалить базу данных при наличии подключения к ним
+Отключить все подключения можно так:
+        SELECT pg_terminate_backend(pg_stat_activity.pid)
+        FROM pg_stat_activity
+        WHERE pg_stat_activity.datname = 'testdb'
+	        AND pid <> pg_backend_pid()
+
+----------------------------------------------
+
+DROP DATABASE testdb - удалить базу данных
+
+
+----------------------------------------------
+
+-- Создание таблиц --
+
+Для того, чтобы определять уникальность в каждой строке таблицы - создаются первичные
+ключи
+
+Создаем таблицу:
+CREATE TABLE publisher()
+ее название : publisher
+в скобках укажем параметры:
+
+имя пользователя длинной до 128 символов, но если меньше, то ничего страшного -
+varchar тип данных, NOT NULL отвечает за то, чтобы пользователь не смог ничего не ввести,
+в данном случае обязателен ввод имени
+
+--org_name varchar(128) NOT NULL
+
+
+адрес пользователя произвольной длины - text тип данных, NOT NULL аналогично первому
+
+--address text NOT NULL
+
+
+Для уникальности каждой строки заведем переменную publisher_id - типом данных integer, он
+будет нумеровать каждую строку по порядку начиная с 1. PRIMARY KEY - указывается как
+уникальность строк, уникальный ключ для каждого пользователя
+
+--publisher_id integer PRIMARY KEY
+
+Чтобы создать еще одну таблицу в этом же поле, после первой таблицы ставим знак ;
+Создадим таблицу book
+CREATE TABLE book()
+В скобках запишем параметры
+
+Указываем id, опять же уникальный ключ для каждой строки нашей таблицы
+
+--book_id integer PRIMARY KEY
+
+
+Заголовок произвольной длины, тип text, исключаем нулевой ввод
+
+--title text NOT NULL
+
+
+Ну и isbn - уникальный идентификатор каждой книги по МС, также исключаем нулевой ввод
+
+--isbn varchar(32) NOT NULL
+
+-------------------------------------------
+-- Добавление данных --
+
+INSERT INTO book
+VALUES
+(1, 'The Diary of a Yong Girl', '0199535566'),
+(2, 'Pride and Prejudice', '9780307594006'),
+(3, 'To Kill a Mockinggbird', '0446310786'),
+(4, 'The book of Gutsy Women', '1501178415'),
+(5, 'War and Peace', '1788886526');
+
+Конструкция INSERT INTO сообщает о добавлении данных
+VALUES - Значения
+В круглых скобках через запятую передает сколько нужно параметров
+Если нужно добавить в другую таблицу еще данные, ставится ;
+Добавление данных соответственно нашим созданным столбцам:
+1- Уникальный ключ
+2- Название, заголовок
+3- isbn код
+Через запятую
+
+INSERT INTO publisher
+VALUES
+(1, 'Everyman''s library', 'NY'),
+(2, 'Oxford University Press', 'NY'),
+(3, 'Grand Central Publishing', 'Washington'),
+(4, 'Simon & Schuster', 'Chigago')
+
+Все то же самое!
+
+Для проверки наших заданных значений используются команда
+SELECT * - Выбрать все(*)
+FROM - Из
+-указываем наше название таблицы
+=>
+SELECT *
+FROM book
+
+На выходе получаем всю табличку
+
+
+Нам нужно объединить две таблицы, ведь ОКСФОРД издал целых 3 книги
+
+Для этого нужно создать отдельный столбец, в который мы внесем уникальный id, по которому
+ сможем смешать таблицы
+
+Добавим столбец, который несет название внешнего ключа для таблицы book
+
+ALTER TABLE book
+ADD COLUMN fk_publisher_id;
+
+ALTER TABLE - вызывает таблицу, которую нужно изменить
+ADD COLUMN - добавляет столбец, который будет называться fk_publisher_id
+
+ALTER TABLE book - изменяем таблицу book
+ADD CONSTRAINT fk_book_publisher  - добавляем ограничение, его наименование
+FOREIGN KEY () - В скобках указывается поле, по которому мы строим колонку, внешний ключ,
+и говорим на что ссылается наша колонка, указываем таблицу и какая колонка
+FOREIGN KEY(fk_publisher_id) REFERENCES publisher(publisher_id)
+
+Весь код выглядит так:
+
+ALTER TABLE book
+ADD COLUMN fk_publisher_id;
+
+ALTER TABLE book
+ADD CONSTRAINT fk_book_publisher
+FOREIGN KEY(fk_publisher_id) REFERENCES publisher(publisher_id)
+
+---
+CREATE TABLE book
+(
+	book_id integer PRIMARY KEY,
+	title text NOT NULL,
+	isbn varchar(32) NOT NULL,
+	fk_publisher_id integer REFERENCES publisher(publisher_id) NOT NULL
+)
+---- Это тоже самое через создание новой таблицы, сначала ее нужно удалить
+
+Следовательно после использования второго варианта мы должны добавить обратно все
+компоненты
+
+INSERT INTO book
+VALUES
+(1, 'The Diary of a Yong Girl', '0199535566', 1),
+(2, 'Pride and Prejudice', '9780307594006', 1),
+(3, 'To Kill a Mockinggbird', '0446310786', 2),
+(4, 'The book of Gutsy Women', '1501178415', 2),
+(5, 'War and Peace', '1788886526', 2)
+
+
+
+Но в итоге мы получим таблицу, в которой 3 раза повторяется id, name address
+Это называется отношение -- Один ко многим --
+
+--- Отношение один к одному ---
+
+Создадим две таблицы, в одной будет имя и фамилия человека, используем тип данных varchar
+ и зададим максимальную длину 64, исключим нулевой ввод
+
+ во второй таблице будут паспортные данные человека, а так же значение, которое будет
+ ссылаться на id человека. Еще добавим место регистрации, город, тип данных text,
+ исключим нулевой ввод
+
+Код выглядит так:
+
+ CREATE TABLE person
+(
+	person_id int PRIMARY KEY,
+	first_name varchar(64) NOT NULL,
+	last_name varchar(64) NOT NULL
+);
+
+CREATE TABLE passport
+(
+	passport_id int PRIMARY KEY,
+	serial_number int NOT NULL,
+	fk_passport_person int REFERENCES person(person_id)
+	registration text NOT NULL
+)
+
+
+Добавим некоторые данные в нашу первую таблицу
+
+INSERT INTO person
+VALUES
+(1, 'John', 'Snow'),
+(2, 'Ned', 'Stark'),
+(3, 'Rob', 'Baratheon')
+
+И во вторую, как и говорил уже, по порядку
+
+INSERT INTO passport
+VALUES
+(1, 123456, 1 ,'Winterfell'),
+(2, 789012, 2, 'Winterfell'),
+(3, 345678, 3, 'king''s Landing')
+
+------------------------------------
+--- Отношение многие ко многим ---
+
+2 таблицы - книги и авторы
+один автор может написать множество книг
+у книги может быть множество соавторов
+
+такие примеры решаются созданием третьей таблицы
+содержат отношения book_id и author_id
+
+сами по себе ключи не уникальны, но пары ключей, строки, 2 значения одновременно
+УНИКАЛЬНЫ!
+
+DROP TABLE book IF EXISTS;
+что значит удалить таблицу книги если она существует
+
+Удалим существующие таблицы и пересоздадим их
+
+DROP TABLE book IF EXISTS;
+DROP TABLE author IF EXISTS;
+
+CREATE TABLE book
+(
+	book_id int PRIMARY KEY,
+	title text NOT NULL,
+	isbn text NOT NULL
+);
+
+CREATE TABLE author
+(
+	author_id int PRIMARY KEY,
+	full_name text NOT NULL,
+	rating real
+);
+
+Создаем третью таблицу, состоящую из двух ссылок на book_id and author_id
+CREATE TABLE book_author
+(
+	book_id int REFERENCES book(book_id)
+	author_id int REFERENCES author(author_id),
+
+	CONSTRAINT book_author_pkey PRIMARY KEY (book_id, author_id) -- composite key
+)
+
+Указываем ограничение на таблице, в скобках задаем по каким колонкам задается PRIMARY
+KEY
+это ключ, состоящий из более чем одной  колонки
+
+
+Добавляем значения в нашу табличку
+
+INSERT INTO book
+VALUES
+(1, 'Book for Dummies', '123456'),
+(2, 'Book for Smart Guys', '7890123'),
+(3, 'Book for Happy People', '4567890'),
+(4, 'Book for Unhappy People', '1234567');
+
+INSERT INTO author
+VALUES
+(1, 'Bob', 4.5),
+(2, 'Alice', 4.0),
+(3, 'John', 4.7)
+
+
+
+Весь код выглядит так:
+
+
+CREATE TABLE book
+(
+	book_id int PRIMARY KEY,
+	title text NOT NULL,
+	isbn text NOT NULL
+);
+
+CREATE TABLE author
+(
+	author_id int PRIMARY KEY,
+	full_name text NOT NULL,
+	rating real
+);
+
+CREATE TABLE book_author
+(
+	book_id int REFERENCES book(book_id),
+	author_id int REFERENCES author(author_id),
+
+	CONSTRAINT book_author_pkey PRIMARY KEY (book_id, author_id) -- composite key
+);
+
+INSERT INTO book
+VALUES
+(1, 'Book for Dummies', '123456'),
+(2, 'Book for Smart Guys', '7890123'),
+(3, 'Book for Happy People', '4567890'),
+(4, 'Book for Unhappy People', '1234567');
+
+INSERT INTO author
+VALUES
+(1, 'Bob', 4.5),
+(2, 'Alice', 4.0),
+(3, 'John', 4.7);
+
+INSERT INTO book_author
+VALUES
+	(1,1),
+	(2,1),
+	(3,1),
+	(3,2),
+	(4,1),
+	(4,2),
+	(4,3)
+
+Следовательно в конце создаем взаимосвязь
+
+
+
+
+
+----- полная выборка -------
+
+SELECT * - выбрать все колонки в таблицах
+FROM products - из таблицы продактс
+в результате выведет полную таблицу
+
+Запросы должны быть конкретными, SELECT * выбирает все столбцы и строки,
+следовательно много данных, большое время на это уходит, очень неэффективно
+
+лучше писать селект без звездочки
+
+SELECT product_id, product_name, unit_price
+FROM products
+
+таким образом выбрали три столбца, написав их через запятую
+
+----математические операции-----
++ сложение
+- вычитание
+* умножение
+/ деление
+^ степень
+|/ квадратный корень
+и т.д.
+
+таким образом можем узнать выручку с товара
+перечислим нужные нам столбцы, а также укажем умножение цены на количество
+
+SELECT product_id, product_name, unit_price * units_in_stock
+FROM products
+
+-----DISTINCT---------------
+
+когда у нас есть общая информация для некоторого количество строк
+
+дистинкт включает в выборку только уникальные значения, без повторов
+
+SELECT country, city
+FROM employees
+
+
+"USA"	"Seattle"
+"USA"	"Tacoma"
+"USA"	"Kirkland"
+"USA"	"Redmond"
+"UK"	"London"
+"UK"	"London"
+"UK"	"London"
+"USA"	"Seattle"
+"UK"	"London"
+
+SELECT DISTINCT country, city
+FROM employees
+
+"USA"	"Tacoma"
+"USA"	"Seattle"
+"USA"	"Kirkland"
+"USA"	"Redmond"
+"UK"	"London"
+
+получаем уникальную СТРОКУ
+
+-------COUNT----------
+
+подсчет количества строк
+
+SELECT COUNT(*)
+FROM orders
+
+выведет 830 - как общее количество строк
+
+Если мы хотим подсчитать уникальное число стран в таблице рабочих, то объединим
+ функции дистинкт и каунт
+
+SELECT COUNT(DISTINCT country)
+FROM employees
+
+выведет 2 - как количество уникальных стран
+
+всегда нужно думать о дубликатах
+
+
+---------WHERE----------------
+Фильтрация
+
+(ГДЕ)
+
+SELECT *
+FROM table
+WHERE condition(условия)
+
+Чаще всего операторы сравнения
+
+=
+>
+<
+>=
+<=
+<> or !=
+
+SELECT company_name, contact_name, phone
+FROM customers
+WHERE country = 'USA'
+
+таким образом мы выбрали всех заказчиков, их компанию, имя, номер, которые
+живут в США
+
+вывести всю инфу о продуктах, цена которых больше 15
+SELECT *
+FROM products
+WHERE unit_price > 15;
+
+
+вывести количество продуктов, цена которых меньше 20
+SELECT COUNT(*)
+FROM products
+WHERE unit_price < 20
+
+
+Работа с датой, ГОД-МЕСЯЦ-ДЕНЬ по международному стандарту
+SELECT *
+FROM orders
+WHERE order_date >= '1998-03-01';
+
+
+-----AND / OR------------
+А также NOT
+
+SELECT *
+FROM table
+WHERE condition1 AND condition2
+
+SELECT *
+FROM table
+WHERE condition1 OR condition2
+
+SELECT *
+FROM table
+WHERE condition1 AND condition2 AND condition3
+
+
+выборка продуктов, где цена больше 25 и наличие на складе больше 40 шт
+SELECT *
+FROM products
+WHERE unit_price > 25 AND units_in_stock > 40
+
+Выборка покупателей, которые живут или в берлине или в лондоне или в сан
+франциско
+SELECT *
+FROM customers
+WHERE city = 'Berlin' OR city = 'London' OR city = 'San Francisco'
+
+Не забываем скобки для определения логики
+SELECT *
+FROM orders
+WHERE shipped_date > '1998-04-30' AND (freight < 75 OR freight > 150);
+
+
+---BETWEEN-----
+между
+
+
+SELECT *
+FROM orders
+WHERE freight >=20 AND freight <=40;
+
+SELECT count(*)
+FROM orders
+WHERE freight BETWEEN 20 AND 40;
+
+от 20 до 40 включая границы
+
+для дат
+SELECT *
+FROM orders
+WHERE order_date BETWEEN '1998-03-30' AND '1998-04-03'
+
+
+----IN / NOT IN------
+выбрать всех покупателей, у которых страна указана из набора
+SELECT *
+FROM customers
+WHERE country IN ('Mexico', 'Germany', 'USA', 'Canada')
+
+
+так же с числами
+SELECT *
+FROM products
+WHERE category_id IN (1, 3, 5, 7)
+
+выбрать тех, у которых страна не та, которая указана в наборе
+SELECT *
+FROM customers
+WHERE country NOT IN ('Mexico', 'Germany', 'USA', 'Canada');
+
+аналогично
+SELECT *
+FROM products
+WHERE category_id NOT IN (1, 3, 5, 7);
+
+
+------ORDER BY --------------
+
+SELECT DISTINCT country
+FROM customers
+ORDER BY country
+
+Страны сортируются в порядке возрастания
+ORDER BY идет после WHERE
+
+
+SELECT DISTINCT country
+FROM customers ------------------------ ОТ A ДО Z
+ORDER BY country ASC;
+
+SELECT DISTINCT country
+FROM customers  ----------------------------ОТ Z ДО A
+ORDER BY country DESC
+
+
+Отсортировать сначала страну по убыванию алфавита, подстроить город по убыванию
+SELECT DISTINCT country, city
+FROM customers
+ORDER BY country DESC, city DESC;
+
+аналогично, только подстроить город по возрастанию
+SELECT DISTINCT country, city
+FROM customers
+ORDER BY country DESC, city ASC
+
+работает также с числами
+
+
+-----MIN, MAX, AVG------
+
+SELECT MIN(order_date)
+FROM orders
+WHERE ship_city = 'London'
+самая ранняя дата
+
+
+SELECT MAX(order_date)
+FROM orders
+WHERE ship_city = 'London'
+Самая поздняя дата
+
+Среднее значение цены, которые еще будут продаваться
+SELECT AVG (unit_price)
+FROM products
+WHERE discontinued <> 1
+
+подсчитать количество товаров, складывает значение строк
+SELECT SUM(units_in_stock)
+FROM products
+WHERE discontinued <>1;
+
+
+----LIKE ------
+
+pattern matching -- соответствие шаблону
+
+% - placeholder (заполнитель), означающий 0, 1 и более символов
+
+_ - ровно 1 любой символ
+
+LIKE 'U%' строка начинается на U
+LIKE '%a' строка кончается на a
+LIKE '%John%' - Строка содержит John
+LIKE 'j%n' - Строки, начинающиеся на j и кончающиеся на n
+LIKE '_oh_' - СТРоки, где 2 и 3 символы oh а первый и последний - любые
+LIKE '_oh%' - Строки где 2 и 3 символ - oh, а первый - любой, и в конце 0, 1
+или более символов
+
+
+
+-----LIMIT------------
+Самым последним пишется
+после всех
+
+Ограничиваем количество строк, записей, которые мы хотим видеть
+
+SELECT product_name, unit_price
+FROM products
+WHERE discontinued <>1
+ORDER BY unit_price DESC
+LIMIT 100
+
+
+
+----Check on NULL------
+Увидеть NULL
+SELECT ship_city, ship_region, ship_country
+FROM orders
+WHERE ship_region IS NULL
+
+
+Увидеть не NULL
+SELECT ship_city, ship_region, ship_country
+FROM orders
+WHERE ship_region IS NOT NULL
+
+
+-----GROUP BY ---------------
+МЕЖДУ WHERE и ORDER BY
+
+группировка
+если мы хотим посчитать количество заказов, вес которых превышает 50,
+сгруппировав их по странам
+
+SELECT ship_country, COUNT(*)
+FROM orders
+WHERE freight > 50
+GROUP BY ship_country
+ORDER BY COUNT(*) DESC;
+
+SELECT category_id, SUM(units_in_stock)
+FROM products
+GROUP BY category_id
+ORDER BY SUM(units_in_stock) DESC
+LIMIT 6
+
+Можем проводить группировки по определенным столбцам
+
+------ HAVING ---------
+Выбрали строки, в которых сумма товаров, сгруппированных по категориям. Наложен
+ постфильтр HAVING, отбирающих сумму больше 5000(как WHERE) и отсортировано по
+ возрастанию
+SELECT category_id, SUM(unit_price * units_in_stock)
+FROM products
+WHERE discontinued <>1
+GROUP BY category_id
+HAVING SUM(unit_price * units_in_stock) > 5000
+ORDER BY SUM(unit_price * units_in_stock)
+
+
+-----UNION, INTERSECT, EXCEPT--------
+
+Объединение, пересечение, исключение
+
+Вывести все страны, из которых все наши заказчики и работники
+UNION - ОБъединение
+
+SELECT country
+FROM customers
+UNION
+SELECT country
+FROM employees
+
+Пишется между таблицами и уникализирует строки
+
+SELECT country
+FROM customers
+UNION ALL
+SELECT country
+FROM employees
+
+Если нужно вывести без уникальности
+
+
+Вывести страны заказчиков, из которых же происходят страны доставщиков
+INTERSECT - ПЕРЕСЕЧЕНИЕ
+
+SELECT country
+FROM customers
+INTERSECT
+SELECT country
+FROM suppliers
+
+выводит общие страны у обеих таблиц
+уникализирована
+
+Аналогично ALL
+
+Найти те страны, в которых проживают заказчики, но в которых нет доставщиков
+
+SELECT country
+FROM customers
+EXCEPT
+SELECT country
+FROM suppliers
+
+Есть в заказчиках, но нет в доставщиках
+
+Аналогично ALL
+
+
+
+
+-----------СОЕДИНЕНИЯ В SQL------------
+
+INNER JOIN - внутреннее соединение
+
+LEFT JOIN, RIGHT JOIN - левое и правое соединение
+
+FULL JOIN - полное соединение
+
+CROSS JOIN - Декартово соединение
+
+SELF JOIN - соединение на себя
+
+таблица1 соединяем с таблица2
+таблица1 - левая
+таблица2 - правая
+----внутреннее
+из левой таблицы в запись попадут только те строки, в которых ключу
+соответсвуют записи правой таблице. ТО есть праймари - внутренний, фореигн -
+внешний. они так соединяются
+
+
+---левое внешнее соединение
+из левой таблицы попадают в результирующий набор абсолютно все записи, если
+есть соответствие - будет тайтл
+если нет его - NULL
+
+--- правое внешнее соединение
+из правой таблицы попадают в результирующий набор абсолютно все записи
+
+пользуются левым внешним соединением и слева располагают ту табличку, из
+которой нужно вытащить все
+
+---фулл внешнее соединение
+
+получаем из левой и из правой табличке все записи, следовательно некоторые
+места будут NULL
+
+--- Декартово произведение
+
+каждой записи слева  мы сопостовляем все записи справа
+
+------INNER JOIN----
+
+если в двух таблицах столбец проименован одинаково, то можно записать как
+products.product_name
+supplier.company_name
+В общем указать, из какой таблицы какую колонку вызывать
+
+
+Хотим объединить данные из табличек продукта и поставщиков. у них общий элемент
+ айди поставщика, по нему и проведем внутреннее соединение. и выведем какой
+ продукт какой компанией выпускается
+
+SELECT product_name, company_name, units_in_stock
+FROM products
+INNER JOIN suppliers ON products.supplier_id = suppliers.supplier_id
+ORDER BY units_in_stock DESC
+
+
+Посчитаем количество товаров определенной категории, объединив данные в
+таблицуе продукта и таблице категории, следовательно сгруппируем по имени
+категории
+SELECT category_name, SUM(units_in_stock)
+FROM products
+INNER JOIN categories ON products.category_id = categories.category_id
+GROUP BY category_name
+ORDER BY SUM(units_in_stock) DESC
+LIMIT 5
+
+
+SELECT product_name, company_name, units_in_stock
+FROM products
+INNER JOIN suppliers ON products.supplier_id = suppliers.supplier_id
+ORDER BY units_in_stock DESC;
+
+SELECT category_name, SUM(units_in_stock)
+FROM products
+INNER JOIN categories ON products.category_id = categories.category_id
+GROUP BY category_name
+ORDER BY SUM(units_in_stock) DESC
+LIMIT 5;
+
+SELECT category_name, SUM(unit_price * units_in_stock)
+FROM products
+INNER JOIN categories ON products.category_id = categories.category_id
+WHERE discontinued <> 1
+GROUP BY category_name
+HAVING SUM(unit_price * units_in_stock) > 5000
+ORDER BY SUM(unit_price * units_in_stock) DESC;
+
+SELECT order_id, customer_id, first_name, last_name, title
+FROM orders
+INNER JOIN employees ON orders.employee_id = employees.employee_id;
+
+SELECT order_date, product_name, ship_country, products.unit_price, quantity, discount
+FROM orders
+INNER JOIN order_details ON orders.order_id = order_details.order_id
+INNER JOIN products ON order_details.product_id = products.product_id
+
+SELECT contact_name, company_name, phone, first_name, last_name, title,
+       order_date, product_name, ship_country, products.unit_price, quantity, discount
+FROM orders
+JOIN order_details ON orders.order_id = order_details.order_id
+INNER JOIN products ON order_details.product_id = products.product_id
+JOIN customers ON orders.customer_id = customers.customer_id
+JOIN employees ON orders.employee_id = employees.employee_id
+WHERE ship_country = 'USA'
+
+
+
+
+----LEFT OUTER JOIN-----
+
+Хотим определить компании, на которых не висят никакие заказы
+
+Используется, чтобы получить все данные из левой таблицы
+
+
+---RIGHT OUTER JOIN------
+Аналогично
+
+
+
+-----SELF JOIN----------
+
+Для того, чтобы построить некую иерархию
+
+Внешний ключ ссылается на поле в той же табличке
+
+
+
+-----Синтаксический сахар---------
+
+SELECT contact_name, company_name, phone, first_name, last_name, title,
+       order_date, product_name, ship_country, products.unit_price, quantity, discount
+FROM orders
+JOIN order_details ON orders.order_id = order_details.order_id
+JOIN products ON order_details.product_id = products.product_id
+JOIN customers ON orders.customer_id = customers.customer_id
+JOIN employees ON orders.employee_id = employees.employee_id
+WHERE ship_country = 'USA'
+
+SELECT contact_name, company_name, phone, first_name, last_name, title,
+       order_date, product_name, ship_country, products.unit_price, quantity, discount
+FROM orders
+JOIN order_details USING(order_id)
+JOIN products USING(product_id)
+JOIN customers USING(customer_id)
+JOIN employees USING(employee_id)
+WHERE ship_country = 'USA'
+
+Одно и тоже !
+
+NATURAL JOIN - СОединение проходит по всем столбцам, которые проименованы
+одинаково
+
+SELECT order_id, customer_id, first_name, last_name, title
+FROM orders
+NATURAL JOIN employees
+
+Но код не явен
+
+Лучше указывать по какому столбцу проходит соединение.
+НИКОГДА НЕ ИСПОЛЬЗОВАТЬ NATURAL JOIN
+
+
+------ПСЕВДОНИМЫ---------
+
+SELECT COUNT(*) AS employees_count
+FROM employees
+Колонка будет названа employees_count
+
+
+SELECT COUNT(*) AS employees_count
+FROM employees;
+
+SELECT COUNT(DISTINCT country) AS country
+FROM employees;
+
+SELECT category_id, SUM(units_in_stock) AS units_in_stock
+FROM products
+GROUP BY category_id
+ORDER BY units_in_stock DESC
+LIMIT 5;
+
+SELECT category_id, SUM(unit_price * units_in_stock) AS total_price
+FROM products
+WHERE discontinued <> 1
+GROUP BY category_id
+HAVING SUM(unit_price * units_in_stock) > 5000
+ORDER BY total_price DESC
+
+
+----ПОДЗАПРОСЫ-----
+
+Запросы бывают логичски сложными
+
+Если не получается реализовать запрос сразу и в лоб, пробуем написать
+подзапрос, решающий  эти задачи
+
+Бывают запросы, которые без подзапросов реализовать либо невозможно, либо
+трудно
+
+Зачастую, запрос с подзапросом можно переписать, чтобы избавиться от
+подзапроса, например, с помощью соединения
+
+Если запрос с подзапросом так же производителен, как и запрос с соединением, то
+ надо сравнивать читабельность
+ Сравниваем производительность
+
+ Зачастую, планировщик раскрывает запросы с подзапросами в запросы с
+ соединениями
+
+SELECT DISTINCT company_name
+FROM suppliers
+WHERE country IN (SELECT DISTINCT country
+				  FROM customers)
+
+SELECT category_name, SUM(units_in_stock)
+FROM products
+INNER JOIN categories USING(category_id)
+GROUP BY category_name
+ORDER BY SUM(units_in_stock) DESC
+LIMIT (SELECT MIN(product_id) + 4 FROM products);
+
+SELECT AVG(units_in_stock)
+FROM products
+
+
+SELECT product_name, units_in_stock
+FROM products
+WHERE units_in_stock > (SELECT AVG(units_in_stock)
+					   	FROM products)
+ORDER BY units_in_stock
+
+
+
+----WHERE EXISTS---------
+
+Выдает тру или фолс. Если фалс - фильтрует и не выдает
+
+Подзапрос стандартный
+SELECT company_name, contact_name
+FROM customers
+WHERE NOT EXISTS (SELECT customer_id FROM orders
+			  WHERE customer_id = customers.customer_id
+			  AND order_date BETWEEN '1995-02-01' AND '1995-02-15')
+
+SELECT company_name, contact_name
+FROM customers
+WHERE EXISTS (SELECT customer_id FROM orders
+			  WHERE customer_id = customers.customer_id
+			  AND freight BETWEEN 50 AND 100)
+
+
+
+
+SELECT product_name
+FROM products
+WHERE NOT EXISTS (SELECT orders.order_id FROM orders
+				 JOIN order_details USING(order_id)
+				 WHERE order_details.product_id = product_id
+				 AND order_date BETWEEN '1995-02-01' AND '1995-02-15')
+
+
+-----КВАНТИФИКАТОРЫ ANY, ALL------
+подзапросы
+
+
+выбрать все уникальные компании заказчиков, которые заказывали более 40 единиц
+товара
+
+SELECT DISTINCT company_name
+FROM customers
+WHERE customer_id = ANY (
+	SELECT customer_id
+	FROM orders
+	JOIN order_details USING(order_id)
+	WHERE quantity > 40
+)
+То есть кастомер айди если совпадает с КАКИМ ЛИБО кастомер айди из этой выборки
+
+ANY - любой
+
+SELECT DISTINCT product_name, quantity
+FROM products
+JOIN order_details USING(product_id)
+WHERE quantity > ALL (
+	SELECT AVG(quantity)
+	FROM order_details
+	GROUP BY product_id
+)
+ORDER BY quantity
+Больше всех средних значений
+
+ALL - ВСЕ
+
+----Управляем таблицами ----
+----  DDL - Data definition language -----
+
+CREATE TABLE table_name - Создать таблицу table_name
+ALTER TABLE table_name - Изменить таблицу table_name
+    ADD COLUMN column_name data_type - Создать новую колонку
+    RENAME TO  new_table_name - Переименовать таблицу
+    RENAME old_column_name TO new_column_name - Переименовать столбец
+    ALTER COLUMN column_name SET DATA TYPE data_type - Изменить тип данных
+DROP TABLE table_name - Удалять таблицу полностью
+TRUNCATE TABLE table_name - Делает таблицу пустой
+    не может удалить данные, на которые есть ссылки из внешних таблиц
+DROP COLUMN - column_name
+
+--- PRIMARY KEY -----
+
+Первичный ключ накладывает значение уникальность, ключ не может повторяться,
+NULL Тоже нельзя
+
+UNIQUE NOT NULL - работает как первичный ключ
+
+PRIMARY KEY - один раз
+
+UNIQUE - множество раз
+
+Работа с ограничениями - посмотреть
+SELECT CONSTRAINT_NAME
+FROM information_schema.key_column_usage
+WHERE table_name = 'chair'
+	AND table_schema = 'public'
+	AND column_name = 'chair_id'
+
+	- удалить огр
+ALTER TABLE chair
+DROP CONSTRAINT chair_chair_id_key
+
+- добавить огр
+ALTER TABLE chair
+ADD PRIMARY KEY(chair_id)
+
